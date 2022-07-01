@@ -495,6 +495,13 @@ def action_button_company8(ack, say):
                     "type": "mrkdwn",
                     "text": ":no_entry_sign: If you find existing opportunities, ask the sales to link them to another account before doing anything."
                 }
+            },
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": ":white_check_mark: If you cannot delete the account for the previous reasons, you may at least change the account name and put \"DO NOT USE\"."
+                }
             }
              ]
              
@@ -1253,10 +1260,86 @@ def action_button6(ack, say):
             ]
     say(blocks=blocks)
     
+@app.action("button-ca2")
+def action_button_ca2(ack, say):
+    ack()
+    blocks = [
+            {
+                "type": "divider"
+            },
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": "The Contractual Account is strongly related to an Initial IO. It appears automatically when an Initial IO is signed, and gets all its information from it. There are many things to be aware of:"
+                }
+            },
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": ":no_entry_sign: *It is totally unusual to modify information directly on a CA* (even if a sales ask you to do it, don't, unless it is necessary)."
+                }
+            },
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": ":warning: You will notice that a CA is linked to one and only one Initial IO. However, many types of IO can be related to a CA (such as Budget IO for instance). It is possible to change the related Initial IO of a Budget IO in order to link this Budget IO to the corresponding CA."
+                }
+            },
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": ":warning::eyes: The Contracted Agency, if it exists, must be exactly the same in the IO and in the CA. You cannot simply change a Contracted Agency, nor put a new one, in an IO, since it is linked to a CA which says differently. To get further details :arrow_right: go to the Agency section."
+                }
+            },
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": ":warning::eyes: That is the same thing for the platforms. To get further details    :arrow_right:" 
+                },
+                "accessory": {
+                    "type": "button",
+                    "text": {"type": "plain_text", "text": "Click Me"},
+                    "action_id": "button-action2"
+                }
+            }
+            ]
+    say(blocks=blocks)
+    
 @app.action("button-action7")
 def action_button7(ack, say):
     ack()
-    say("Nothing to show, for now!")
+    blocks = [
+            {
+                "type": "divider"
+            },
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": "It's easy to change of Managed Agency. But the *Contracted Agency is legal binding*. So you cannot change it freely because the IO is related to a CA which depends on this Contracted Agency as well."
+                }
+            },
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": ":arrow_right: If a sales needs to change the Contracted Agency of an IO, or to add one, he has to create a new Initial IO. Signing it will create a new CA, with the Contracted Agency in the name. If the previous IO was a mistake, since the agency was inaccurate, it has to be cancelled."
+                }
+            },
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": ":white_check_mark: Sometimes, it may happen that the IO already has a Contracted Agency, but the related CA has not. In this case, you have to link the IO with the correct CA. Don't forget to ensure that the CA and the IO are related to the same Initial IO, otherwise make the correction *at the IO level*."
+                }
+            }
+            ]
+    say(blocks=blocks)
     
 
 ######## Action for the IO Details below ---------------------------------
@@ -1360,15 +1443,25 @@ def action_button_io2(ack, say):
                 "type": "section",
                 "text": {
                     "type": "mrkdwn",
-                    "text": "The status of an IOD is on pending validation when the IO is sent and the Retail Media team has to approve it. *You cannot change this status* since the contract is send and there is no modification to be done."
+                    "text": "The status of an IOD is on pending validation when the IO is sent and the Retail Media team has to approve it. *You cannot change this status* since the contract is sent and there is no modification to be done."
                 }
             },
             {
                 "type": "section",
                 "text": {
                     "type": "mrkdwn",
-                    "text": ":white_check_mark: But sometimes, modifications need to be done. So you have to ask the sales to *void the envelope*."
+                    "text": ":white_check_mark: But sometimes, modifications need to be done. So you have to ask the sales to *void the envelope*. For instance, it is necessary when you encounter this error:"
                 }
+            },
+            {
+                    "type": "image",
+                    "title": {
+                        "type": "plain_text",
+                        "text": "Pending Validation error",
+                        "emoji": True
+                    },
+                    "image_url": "https://i.postimg.cc/zvKbmz10/pending-validation-error.png",
+                    "alt_text": "image1"
             },
             {
                 "type": "section",
@@ -1377,6 +1470,20 @@ def action_button_io2(ack, say):
                     "text": "*Definition*: Void the envelope means that you make the contract juridically null and void (in order to make new changes and to send the contract again). It is the job of the sales to do it."
                 }
             },
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": ":eyes: If a sales cannot find the button, give the following indications.\n :arrow_right: Go to the *DocuSign Status* tab and click on the accurate \"DSX-XXXXX\". The button will appear to the top right corner of the screen."
+                }
+            },
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": ":warning: If the IO is signed, voiding the envelope can't be done."
+                }
+            }
             ]
     say(blocks=blocks)
     
@@ -1429,7 +1536,38 @@ def action_button_io4(ack, say):
     
     say(blocks=blocks)
             
-
+@app.action("button-io10")
+def action_button_io11(ack, say):
+    ack()
+    blocks = [
+            {
+                "type": "divider"
+            },
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": ":arrow_right: When we want to change the commercial conditions/payment terms (Client Mode, DSP, Fees, Commercial conditions, etc.), it is necessary to make a new *amendment* and to sign it. Amendments can be created at the Initial IO page level, where you will find a button. They have to appear on the generated contract at the end."
+                }
+            },
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": ":eyes: Don't forget to copy the field that you want to preserve such as \"Client Mode\" or \"Send Bill Option\". If you chose *Managed* for the \"Client Mode\", you would have to populate the Managed Fees (and the dates)."
+                }
+            },
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": ":warning: The *\"Contract Particular Conditions\" field is legal binding*, it requires an approval. Populate the \"Commercial Conditions\" field instead if possible."
+                }
+            }
+            ]
+            
+    say(blocks=blocks)
+            
 @app.action("button-io11")
 def action_button_io11(ack, say):
     ack()
