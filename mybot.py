@@ -195,6 +195,8 @@ def show_datepicker(event, say):
             text="Pick a date for me to remind you"
         )
 
+######### Company Account questions ###########################
+
 @app.action("button-action1")
 def action_button1(ack, say):
     ack()
@@ -396,7 +398,7 @@ def action_button_company3(ack, say):
                 "type": "section",
                 "text": {
                     "type": "mrkdwn",
-                    "text": ":arrow_right: The Prospect Segmentation must be populated at the Company Level, so the Credit Segmentation field would populate automatically (it could take time). Otherwise, ask the sales what value to put and use Salesforce Inspector to populate (:warning: When populating in the inspector field, save before clicking on the right arrow, to be sure to populate the value)."
+                    "text": ":arrow_right: The \"Prospect Segmentation - Estimated Monthly Revenue\" must be populated at the Company Level, so the Credit Segmentation field would populate automatically (it could take time). Don't try to use Salesforce inspector to make the change directly on the CS field unless it is strictly necessary."
                 }
             }
             ]
@@ -414,7 +416,7 @@ def action_button_company4(ack, say):
                 "type": "section",
                 "text": {
                     "type": "mrkdwn",
-                    "text": ":eyes: The Company ID is a way to identify exactly the company account related to an IO. The format could be specific (there is a major difference between the US and the Rest of the World). If the format is inaccurate, there will be erros at the opportunity and IO level."
+                    "text": ":eyes: The Company ID is a way to identify exactly the company account related to an IO. The format could be specific (there is a major difference between the US and the Rest of the World). If the format is inaccurate, there will be errors at the opportunity and IO level."
                 }
             },
             {
@@ -468,6 +470,59 @@ def action_button_company5(ack, say):
             ]
     say(blocks=blocks)
 
+@app.action("button-company7")
+def action_button_company7(ack, say):
+    ack()
+    blocks = [
+            {
+                "type": "divider"
+            },
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": "*Definition*: The Business Unit is a box to check or not at the Account level. If it is checked, it means that the Account is a \"clone\" of another one, but named differently because there are two sales for the same company (for instance, Asus Canada is a business unit, derived from Asus US). Apart from that, the Company ID and the Billing Address are the same, but the RM Sales/AS change. It is a way to split the ownership and keep the same billing entity."
+                }
+            },
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": ":warning: There is a procedure to follow while switching an account from company to business unit:"
+                }
+            },
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": ":one: Uncheck the *IO Signed Box* (don't forget to choose manual signature to do so). Switch status bar to \"Approved\" if it is not done automatically."
+                }
+            },
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": ":two: *Remove the attached Contractual Account* (use Salesforce Inspector to erase the corresponding field) and then update the needed changes (regarding business unit)."
+                }
+            },
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": ":three: Check the *IO Signed Box*, always in the same Initial IO. It would generate a new Contractual Account. Make sure that the update is done in RMP."
+                }
+            },
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": ":four: Move all Budget IOs to the new Contractual Account (simply change the Contractual Account field at the Budget IO level)."
+                }
+            }
+            ]
+            
+    say(blocks=blocks)
+
 @app.action("button-company8")
 def action_button_company8(ack, say):
     ack()
@@ -506,6 +561,8 @@ def action_button_company8(ack, say):
              ]
              
     say(blocks=blocks)
+    
+############### Platform change questions ####################
     
 @app.action("button-action2")
 def action_button2(ack, say):
@@ -741,7 +798,7 @@ def action_platform3(ack, say):
                     "type": "section",
                     "text": {
                         "type": "mrkdwn",
-                        "text": ":three: Contact Goeffrey Sorel, to tell him to change the Financial Account linked to this IO (this is the only case where this step is necessary)."
+                        "text": ":three: If the changing is RMP :arrow_right: Erms, *contact Goeffrey Sorel*, to tell him to change the Financial Account linked to this IO (this is the only case where this step is necessary)."
                     }
                 },
                 {
@@ -757,6 +814,8 @@ def action_platform3(ack, say):
                 ]
     
     say(blocks=blocks)
+
+############### Contact questions ################
 
 @app.action("button-action3")
 def action_button3(ack, say):
@@ -828,6 +887,8 @@ def action_button3(ack, say):
             }
             ]
     say(blocks=blocks)
+    
+############ Oportunity questions ########################"
     
 @app.action("button-action4")
 def action_button4(ack, say):
@@ -917,7 +978,7 @@ def action_opportunity1(ack, say):
                     "type": "section",
                     "text": {
                         "type": "mrkdwn",
-                        "text": "*Definition*: The close date is the date when the negociations end, the IO is signed. You can find the close date field at *the Opportunity level*. The most important is to know that *the close date cannot be higher than the launch/start date of the campaign*!"
+                        "text": "*Definition*: The close date is the date when the negotiations end, the IO is signed. You can find the close date field at *the Opportunity level*. The most important is to know that *the close date cannot be higher than the launch/start date of the campaign*!"
                     }
                 },
                 {
@@ -941,6 +1002,75 @@ def action_opportunity1(ack, say):
     
     say(blocks=blocks)
 
+@app.action("button-opportunity2")
+def action_button_op2(ack, say):
+    ack()
+    blocks = [
+            {
+                "type": "divider"
+            },
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": "*Definition*: An opportunity product is linked to the sold product in a contract. It can be for instance a Commerce display, a Sponsored product, etc. An opportunity product is created just after the creation of an opportunity. You can find the list of opportunity products in the associated tab, at the Opportunity level."
+                }
+            },
+            {
+                "type": "image",
+                "title": {
+                    "type": "plain_text",
+                    "text": "Opportunity product example",
+                    "emoji": True
+                },
+                "image_url": "https://i.postimg.cc/wjB5zwRf/op-ex1.png",
+                "alt_text": "image1"
+            },
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": ":warning: *When the Opportunity is linked to a signed IO, you cannot create new opportunity products*. If necessary, the associated IO needs to be cancelled. Then the sales can add an Opportunity Product and create a new IO."
+                }
+            },
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": ":eyes: It is possible to have only one Initial IO by Opportunity. If you want a new Initial IO, you have to cancel the previous one."
+                }
+            },
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": "*Creating an Opportunity Product is creating an IOD on the related IO in the same time*, with the same product (IO Product). The two products have to be the same, otherwise there would be an error. You can find the related IOD in the IO Details tab of the corresponding IO."
+                }
+            },
+            {
+                "type": "image",
+                "title": {
+                    "type": "plain_text",
+                    "text": "OP to IOD",
+                    "emoji": True
+                },
+                "image_url": "https://i.postimg.cc/7hnr0YLP/op-ex2.png",
+                "alt_text": "image1"
+            },
+            {
+                "type": "image",
+                "title": {
+                    "type": "plain_text",
+                    "text": "IO Product and OP",
+                    "emoji": True
+                },
+                "image_url": "https://i.postimg.cc/Jn8TJ3HJ/op-ex3.png",
+                "alt_text": "image1"
+            }            
+            ]
+            
+    say(blocks=blocks)
+
 @app.action("short_cut_close_date")
 def action_opportunity1_shortcut(ack, say):
     ack()
@@ -958,7 +1088,7 @@ def action_opportunity1_shortcut(ack, say):
                     "type": "section",
                     "text": {
                         "type": "mrkdwn",
-                        "text": "*Definition*: The close date is the date when the negociations end, the IO is signed. You can find the close date field at *the Opportunity level*. The most important is to know that *the close date cannot be higher than the launch/start date of the campaign*!"
+                        "text": "*Definition*: The close date is the date when the negotiations end, the IO is signed. You can find the close date field at *the Opportunity level*. The most important is to know that *the close date cannot be higher than the launch/start date of the campaign*!"
                     }
                 },
                 {
@@ -981,6 +1111,8 @@ def action_opportunity1_shortcut(ack, say):
                 ]
     
     say(blocks=blocks)
+    
+############## IO Questions ################################
 
 @app.action("button-action5")
 def action_button5(ack, say):
@@ -1156,7 +1288,7 @@ def action_button5(ack, say):
                 "type": "section",
                 "text": {
                     "type": "mrkdwn",
-                    "text": "Commercial terms/payment terms"
+                    "text": "Commercial conditions/Payment terms"
                 },
                 "accessory": {
                     "type": "button",
@@ -1188,6 +1320,392 @@ def action_button5(ack, say):
             }
             ]
     say(blocks=blocks)
+    
+    
+######## Action for the IO Details below ---------------------------------
+
+@app.action("button-io1")
+def action_button1_io(ack, say):
+    ack()
+    blocks = [
+            {
+                "type": "divider"
+            },
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": "Ok! What do you want to know about IO Details?"
+                }
+            },
+            {
+                "type": "divider"
+            },
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": "Date change (start/end)"
+                },
+                "accessory": {
+                    "type": "button",
+                    "text": {
+                        "type": "plain_text",
+                        "text": "Click Me",
+                        "emoji": True
+                    },
+                    "value": "click_me_123",
+                    "action_id": "button-iod1"
+                }
+            },
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": "Change Order process"
+                },
+                "accessory": {
+                    "type": "button",
+                    "text": {
+                        "type": "plain_text",
+                        "text": "Click Me",
+                        "emoji": True
+                    },
+                    "value": "click_me_123",
+                    "action_id": "button-iod2"
+                }
+            },
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": "IO Product vs. Change Order (explanation)"
+                },
+                "accessory": {
+                    "type": "button",
+                    "text": {
+                        "type": "plain_text",
+                        "text": "Click Me",
+                        "emoji": True
+                    },
+                    "value": "click_me_123",
+                    "action_id": "button-iod3"
+                }
+            },
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": "Status (cancelled/validated)"
+                },
+                "accessory": {
+                    "type": "button",
+                    "text": {
+                        "type": "plain_text",
+                        "text": "Click Me",
+                        "emoji": True
+                    },
+                    "value": "click_me_123",
+                    "action_id": "button-iod4"
+                }
+            }
+            ]
+    say(blocks=blocks)
+    
+#---------------- IOD questions -------------------------
+    
+@app.action("button-iod1")
+def action_button_iod1(ack, say):
+    ack()
+    blocks = [
+            {
+                "type": "divider"
+            },
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": "Ok! That's one of the most common task. Follow the steps below."
+                }
+            },
+            {
+                "type": "divider"
+            },
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": ":one: First, you have to check if the sales need to make a Change Order for *\"date extension\"*. If only the end date is postponed, meaning that the campaign duration is extended, then the sales needs to make this Change Order."
+                    }
+            },
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": ":two: Otherwise, you have to go to the *IO Details* and change the dates at the IOD level."
+                    }
+            },
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": ":three: If the dates did not change automatically at the IO level, change them."
+                }
+            },
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": ":eyes: It would be necessary to have the \"*IO Change Type*\" field populated. If this is not the case, ask to the sales what value to put."
+                }
+            },
+            {
+                    "type": "image",
+                    "title": {
+                        "type": "plain_text",
+                        "text": "IO Change Type",
+                        "emoji": True
+                    },
+                    "image_url": "https://i.postimg.cc/1Xg7WrBp/IO-change-type.png",
+                    "alt_text": "image1"
+            },
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": ":no_entry_sign: The launch/start date must be higher than the close date                       :arrow_right:"     
+                },
+                "accessory": {
+                    "type": "button",
+                    "text": {
+                        "type": "plain_text",
+                        "text": "Click Me",
+                        "emoji": True
+                    },
+                    "value": "click_me_123",
+                    "action_id": "short_cut_close_date"
+                }
+            },
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": ":no_entry_sign: In the Change Order case, *you must not populate the start/end dates* if they already exist in the IOD. Just populate the \"Original Start Date\" and the \"Original End Date\"."
+                }
+            }
+            ]
+    say(blocks=blocks)  
+    
+######----------------------------------------------------
+
+@app.action("button-io2")
+def action_button_io2(ack, say):
+    ack()
+    blocks = [
+            {
+                "type": "divider"
+            },
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": "The status of an IOD is on pending validation when the IO is sent and the Retail Media team has to approve it. *You cannot change this status* since the contract is sent and there is no modification to be done."
+                }
+            },
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": ":white_check_mark: But sometimes, modifications need to be done. So you have to ask the sales to *void the envelope*. For instance, it is necessary when you encounter this error:"
+                }
+            },
+            {
+                    "type": "image",
+                    "title": {
+                        "type": "plain_text",
+                        "text": "Pending Validation error",
+                        "emoji": True
+                    },
+                    "image_url": "https://i.postimg.cc/zvKbmz10/pending-validation-error.png",
+                    "alt_text": "image1"
+            },
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": "*Definition*: Void the envelope means that you make the contract juridically null and void (in order to make new changes and to send the contract again). It is the job of the sales to do it."
+                }
+            },
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": ":eyes: If a sales cannot find the button, give the following indications.\n :arrow_right: Go to the *DocuSign Status* tab and click on the accurate \"DSX-XXXXX\". The button will appear to the top right corner of the screen."
+                }
+            },
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": ":warning: If the IO is signed, voiding the envelope can't be done."
+                }
+            }
+            ]
+    say(blocks=blocks)
+    
+@app.action("button-io4")
+def action_button_io4(ack, say):
+    ack()
+    blocks = [
+            {
+                "type": "divider"
+            },
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": "*Usually*, the IO Signed Box is checked automatically when the client signs the contract. Then the *IO Type* is \"Standard with Electronic Signature\". If the IO Type is \"Standard with Manual Signature\", the Sales has to check the IO Signed box."
+                }
+            },
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": ":arrow_right: Sometimes, it happens that you have to uncheck the IO Signed box, for several reasons (generate a new Contractual Account, save a platform change, etc.). In this case, you have to *select the \"Standard with Manual Signature\" for the IO Type field* otherwise Salesforce won't enable you to un-sign the IO."
+                }
+            },
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": ":warning::eyes: If a sales ask you to check the IO Signed box, first you have to verify if there is actually a signed contract in the *Notes & Attachments* section. Then you can check the box."
+                }
+            },
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": ":no_entry_sign: Sometimes it happens you encounter an *approval issue*. It can be a mistake since the IO is already signed (and then, necessarily approved). In this case :arrow_right: go to the Salesforce Inspector, look for \"Approval\" in the search bar and populate *Approved* wherever it's possible (when you see the \"picklist\" option in the Type column)."
+                }
+            },
+            {
+                    "type": "image",
+                    "title": {
+                        "type": "plain_text",
+                        "text": "Approval fields",
+                        "emoji": True
+                    },
+                    "image_url": "https://i.postimg.cc/xTt8QbwJ/approved-inspector.png",
+                    "alt_text": "image1"
+            }
+             ]
+    
+    say(blocks=blocks)
+    
+@app.action("button-io5")
+def action_button_io5(ack, say):
+    ack()
+    blocks = [
+            {
+                "type": "divider"
+            },
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": "*Definition: Pay Per Consumption*: The client can add more budget when it's necessary without signing a new IO. PPC is used when there is no start/end dates. It is enough to sign one IO at the start."
+                }
+            },
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": ":warning: Having an end date AND a PPC Box checked may cause some troubles. Ensure that there is no such kind of duplication."
+                }
+            }
+            ]
+          
+    say(blocks=blocks)
+    
+@app.action("button-io10")
+def action_button_io10(ack, say):
+    ack()
+    blocks = [
+            {
+                "type": "divider"
+            },
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": ":arrow_right: When we want to change the commercial conditions/payment terms (Client Mode, DSP, Fees, Commercial conditions, etc.), it is necessary to make a new *amendment* and to sign it. Amendments can be created at the Initial IO page level, where you will find a button. They have to appear on the generated contract at the end."
+                }
+            },
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": ":eyes: Don't forget to copy the field that you want to preserve such as \"Client Mode\" or \"Send Bill Option\". If you choose *Managed* for the \"Client Mode\", you would have to populate the Managed Fees (and the dates)."
+                }
+            },
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": ":warning: The *\"Contract Particular Conditions\" field is legal binding*, it requires an approval. Populate the \"Commercial Conditions\" field instead if possible."
+                }
+            },
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": ":white_check_mark: However, if the commercial conditions/payment terms of an amendment are wrong from the start, it is possible to directly make the changes on the amendment (no need to create a new one)."
+                }
+            }
+            ]
+            
+    say(blocks=blocks)
+            
+@app.action("button-io11")
+def action_button_io11(ack, say):
+    ack()
+    blocks = [
+            {
+                "type": "divider"
+            },
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": ":one: First of all, check if the IO is already signed or not. If it is not, just change the company name."
+                }
+            },
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": ":two: If the IO is already signed, *you have to un-sign the IO* because resigning the Initial IO will create a new Contractual Account. Then populate the *Non Standard  RMP Account* to *yes* if the platform is RMP. You have to be careful to the following condition:"
+                }
+            },
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": ":white_check_mark: If the VATs (or Company ID) is the same, there is no need to ask the client for legal approval, just re-apply old signature date via dataloader."
+                }
+            },
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": ":x: If there is a different VATs (or Company ID), you need to un-sign (again) and to ask for a new legal approval. Then, the sales would need to use DocuSign again, so *do not forget to put the IO Type to \"Electronic Signature\"*."
+                }
+            }
+             ]
+    say(blocks=blocks)
+    
+    
+############# Contractual Account questions ##############
     
 @app.action("button-action6")
 def action_button6(ack, say):
@@ -1310,6 +1828,8 @@ def action_button_ca2(ack, say):
             ]
     say(blocks=blocks)
     
+########################## Agency change questions ##############################
+
 @app.action("button-action7")
 def action_button7(ack, say):
     ack()
@@ -1341,352 +1861,6 @@ def action_button7(ack, say):
             ]
     say(blocks=blocks)
     
-
-######## Action for the IO Details below ---------------------------------
-
-@app.action("button-io1")
-def action_button1_io(ack, say):
-    ack()
-    blocks = [
-            {
-                "type": "divider"
-            },
-            {
-                "type": "section",
-                "text": {
-                    "type": "mrkdwn",
-                    "text": "Ok! What do you want to know about IO Details?"
-                }
-            },
-            {
-                "type": "divider"
-            },
-            {
-                "type": "section",
-                "text": {
-                    "type": "mrkdwn",
-                    "text": "Date change (start/end)"
-                },
-                "accessory": {
-                    "type": "button",
-                    "text": {
-                        "type": "plain_text",
-                        "text": "Click Me",
-                        "emoji": True
-                    },
-                    "value": "click_me_123",
-                    "action_id": "button-iod1"
-                }
-            },
-            {
-                "type": "section",
-                "text": {
-                    "type": "mrkdwn",
-                    "text": "Change Order process"
-                },
-                "accessory": {
-                    "type": "button",
-                    "text": {
-                        "type": "plain_text",
-                        "text": "Click Me",
-                        "emoji": True
-                    },
-                    "value": "click_me_123",
-                    "action_id": "button-iod2"
-                }
-            },
-            {
-                "type": "section",
-                "text": {
-                    "type": "mrkdwn",
-                    "text": "IO Product vs. Change Order (explanation)"
-                },
-                "accessory": {
-                    "type": "button",
-                    "text": {
-                        "type": "plain_text",
-                        "text": "Click Me",
-                        "emoji": True
-                    },
-                    "value": "click_me_123",
-                    "action_id": "button-iod3"
-                }
-            },
-            {
-                "type": "section",
-                "text": {
-                    "type": "mrkdwn",
-                    "text": "Status (cancelled/validated)"
-                },
-                "accessory": {
-                    "type": "button",
-                    "text": {
-                        "type": "plain_text",
-                        "text": "Click Me",
-                        "emoji": True
-                    },
-                    "value": "click_me_123",
-                    "action_id": "button-iod4"
-                }
-            }
-            ]
-    say(blocks=blocks)
-    
-@app.action("button-io2")
-def action_button_io2(ack, say):
-    ack()
-    blocks = [
-            {
-                "type": "divider"
-            },
-            {
-                "type": "section",
-                "text": {
-                    "type": "mrkdwn",
-                    "text": "The status of an IOD is on pending validation when the IO is sent and the Retail Media team has to approve it. *You cannot change this status* since the contract is sent and there is no modification to be done."
-                }
-            },
-            {
-                "type": "section",
-                "text": {
-                    "type": "mrkdwn",
-                    "text": ":white_check_mark: But sometimes, modifications need to be done. So you have to ask the sales to *void the envelope*. For instance, it is necessary when you encounter this error:"
-                }
-            },
-            {
-                    "type": "image",
-                    "title": {
-                        "type": "plain_text",
-                        "text": "Pending Validation error",
-                        "emoji": True
-                    },
-                    "image_url": "https://i.postimg.cc/zvKbmz10/pending-validation-error.png",
-                    "alt_text": "image1"
-            },
-            {
-                "type": "section",
-                "text": {
-                    "type": "mrkdwn",
-                    "text": "*Definition*: Void the envelope means that you make the contract juridically null and void (in order to make new changes and to send the contract again). It is the job of the sales to do it."
-                }
-            },
-            {
-                "type": "section",
-                "text": {
-                    "type": "mrkdwn",
-                    "text": ":eyes: If a sales cannot find the button, give the following indications.\n :arrow_right: Go to the *DocuSign Status* tab and click on the accurate \"DSX-XXXXX\". The button will appear to the top right corner of the screen."
-                }
-            },
-            {
-                "type": "section",
-                "text": {
-                    "type": "mrkdwn",
-                    "text": ":warning: If the IO is signed, voiding the envelope can't be done."
-                }
-            }
-            ]
-    say(blocks=blocks)
-    
-@app.action("button-io4")
-def action_button_io4(ack, say):
-    ack()
-    blocks = [
-            {
-                "type": "divider"
-            },
-            {
-                "type": "section",
-                "text": {
-                    "type": "mrkdwn",
-                    "text": "*Usually*, the IO Signed Box is checked automatically when the client signs the contract. Then the *IO Type* is \"Standard with Electronic Signature\". If the IO Type is \"Standard with Manual Signature\", the Sales has to check the IO Signed box."
-                }
-            },
-            {
-                "type": "section",
-                "text": {
-                    "type": "mrkdwn",
-                    "text": ":arrow_right: Sometimes, it happens that you have to uncheck the IO Signed box, for several reasons (generate a new Contractual Account, save a platform change, etc.). In this case, you have to *select the \"Standard with Manual Signature\" for the IO Type field* otherwise Salesforce won't enable you to un-sign the IO."
-                }
-            },
-            {
-                "type": "section",
-                "text": {
-                    "type": "mrkdwn",
-                    "text": ":warning::eyes: If a sales ask you to check the IO Signed box, first you have to verify if there is actually a signed contract in the *Notes & Attachments* section. Then you can check the box."
-                }
-            },
-            {
-                "type": "section",
-                "text": {
-                    "type": "mrkdwn",
-                    "text": ":no_entry_sign: Sometimes it happens you encounter an *approval issue*. It can be a mistake since the IO is already signed (and then, necessarily approved). In this case :arrow_right: go to the Salesforce Inspector, look for \"Approval\" in the search bar and populate *Approved* wherever it's possible (when you see the \"picklist\" option in the Type column)."
-                }
-            },
-            {
-                    "type": "image",
-                    "title": {
-                        "type": "plain_text",
-                        "text": "IO Change Type",
-                        "emoji": True
-                    },
-                    "image_url": "https://i.postimg.cc/xTt8QbwJ/approved-inspector.png",
-                    "alt_text": "image1"
-            }
-             ]
-    
-    say(blocks=blocks)
-            
-@app.action("button-io10")
-def action_button_io11(ack, say):
-    ack()
-    blocks = [
-            {
-                "type": "divider"
-            },
-            {
-                "type": "section",
-                "text": {
-                    "type": "mrkdwn",
-                    "text": ":arrow_right: When we want to change the commercial conditions/payment terms (Client Mode, DSP, Fees, Commercial conditions, etc.), it is necessary to make a new *amendment* and to sign it. Amendments can be created at the Initial IO page level, where you will find a button. They have to appear on the generated contract at the end."
-                }
-            },
-            {
-                "type": "section",
-                "text": {
-                    "type": "mrkdwn",
-                    "text": ":eyes: Don't forget to copy the field that you want to preserve such as \"Client Mode\" or \"Send Bill Option\". If you chose *Managed* for the \"Client Mode\", you would have to populate the Managed Fees (and the dates)."
-                }
-            },
-            {
-                "type": "section",
-                "text": {
-                    "type": "mrkdwn",
-                    "text": ":warning: The *\"Contract Particular Conditions\" field is legal binding*, it requires an approval. Populate the \"Commercial Conditions\" field instead if possible."
-                }
-            }
-            ]
-            
-    say(blocks=blocks)
-            
-@app.action("button-io11")
-def action_button_io11(ack, say):
-    ack()
-    blocks = [
-            {
-                "type": "divider"
-            },
-            {
-                "type": "section",
-                "text": {
-                    "type": "mrkdwn",
-                    "text": ":one: First of all, check if the IO is already signed or not. If it is not, just change the company name."
-                }
-            },
-            {
-                "type": "section",
-                "text": {
-                    "type": "mrkdwn",
-                    "text": ":two: If the IO is already signed, *you have to un-sign the IO* because resigning the Initial IO will create a new Contractual Account. Then populate the *Non Standard  RMP Account* to *yes*. You have to be careful to the following condition:"
-                }
-            },
-            {
-                "type": "section",
-                "text": {
-                    "type": "mrkdwn",
-                    "text": ":white_check_mark: If the VATs (or Company ID) is the same, there is no need to ask the client for legal approval, just re-apply old signature date via dataloader."
-                }
-            },
-            {
-                "type": "section",
-                "text": {
-                    "type": "mrkdwn",
-                    "text": ":x: If there is a different VATs (or Company ID), you need to un-sign (again) and to ask for a new legal approval. Then, the sales would need to use DocuSign again, so *do not forget to put the IO Type to\"Electronic Signature\"*."
-                }
-            }
-             ]
-    say(blocks=blocks)
-    
-@app.action("button-iod1")
-def action_button_iod1(ack, say):
-    ack()
-    blocks = [
-            {
-                "type": "divider"
-            },
-            {
-                "type": "section",
-                "text": {
-                    "type": "mrkdwn",
-                    "text": "Ok! That's one of the most common task. Follow the steps below."
-                }
-            },
-            {
-                "type": "divider"
-            },
-            {
-                "type": "section",
-                "text": {
-                    "type": "mrkdwn",
-                    "text": ":one: First, you have to check if the sales need to make a Change Order for *\"date extension\"*. If only the end date is postponed, meaning that the campaign duration is extended, then the sales needs to make this Change Order."
-                    }
-            },
-            {
-                "type": "section",
-                "text": {
-                    "type": "mrkdwn",
-                    "text": ":two: Otherwise, you have to go to the *IO Details* and change the dates at the IOD level."
-                    }
-            },
-            {
-                "type": "section",
-                "text": {
-                    "type": "mrkdwn",
-                    "text": ":three: If the dates did not change automatically at the IO level, change them."
-                }
-            },
-            {
-                "type": "section",
-                "text": {
-                    "type": "mrkdwn",
-                    "text": ":eyes: It would be necessary to have the \"*IO Change Type*\" field populated. If this is not the case, ask to the sales what value to put."
-                }
-            },
-            {
-                    "type": "image",
-                    "title": {
-                        "type": "plain_text",
-                        "text": "IO Change Type",
-                        "emoji": True
-                    },
-                    "image_url": "https://i.postimg.cc/1Xg7WrBp/IO-change-type.png",
-                    "alt_text": "image1"
-            },
-            {
-                "type": "section",
-                "text": {
-                    "type": "mrkdwn",
-                    "text": ":no_entry_sign: The launch/start date must be higher than the close date                       :arrow_right:"     
-                },
-                "accessory": {
-                    "type": "button",
-                    "text": {
-                        "type": "plain_text",
-                        "text": "Click Me",
-                        "emoji": True
-                    },
-                    "value": "click_me_123",
-                    "action_id": "short_cut_close_date"
-                }
-            },
-            {
-                "type": "section",
-                "text": {
-                    "type": "mrkdwn",
-                    "text": ":no_entry_sign: In the Change Order case, *you must not populate the start/end dates* if they already exist in the IOD. Just populate the \"Original Start Date\" and the \"Original End Date\"."
-                }
-            }
-            ]
-    say(blocks=blocks)  
 
 
 # Start your app
