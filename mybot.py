@@ -1317,6 +1317,23 @@ def action_button5(ack, say):
                     "value": "click_me_123",
                     "action_id": "button-io11"
                 }
+            },
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": "Billing Option change"
+                },
+                "accessory": {
+                    "type": "button",
+                    "text": {
+                        "type": "plain_text",
+                        "text": "Click Me",
+                        "emoji": True
+                    },
+                    "value": "click_me_123",
+                    "action_id": "button-io12"
+                }
             }
             ]
     say(blocks=blocks)
@@ -1659,7 +1676,17 @@ def action_button_io10(ack, say):
                 "type": "section",
                 "text": {
                     "type": "mrkdwn",
-                    "text": ":white_check_mark: However, if the commercial conditions/payment terms of an amendment are wrong from the start, it is possible to directly make the changes on the amendment (no need to create a new one)."
+                    "text": ":white_check_mark: However, if the commercial conditions/payment terms of an amendment are wrong from the start, it is possible to directly make the changes on the amendment or on the IO (no need to create a new one) *but you have to follow the same procedure than for the agency changes* :arrow_right:"
+                },
+                "accessory": {
+                    "type": "button",
+                    "text": {
+                        "type": "plain_text",
+                        "text": "Click Me",
+                        "emoji": True
+                    },
+                    "value": "click_me_123",
+                    "action_id": "button-action7"
                 }
             }
             ]
@@ -1704,6 +1731,33 @@ def action_button_io11(ack, say):
              ]
     say(blocks=blocks)
     
+@app.action("button-io12")
+def action_button_io12(ack, say):
+    ack()
+    blocks = [
+            {
+                "type": "divider"
+            },
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": "If the Billing Options are wrong, due to a mistake, you have to follow the same procedure than for the agency changes due to a mistake, step by step :arrow_right:"
+                },
+                "accessory": {
+                    "type": "button",
+                    "text": {
+                        "type": "plain_text",
+                        "text": "Click Me",
+                        "emoji": True
+                    },
+                    "value": "click_me_123",
+                    "action_id": "button-action7"
+                }
+            }
+            ]
+            
+    say(blocks=blocks)
     
 ############# Contractual Account questions ##############
     
@@ -1778,6 +1832,48 @@ def action_button6(ack, say):
             ]
     say(blocks=blocks)
     
+@app.action("button-ca1")
+def action_button_ca1(ack, say):
+    ack()
+    blocks = [
+            {
+                "type": "divider"
+            },
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": "There are some things to know while dealing with Contractual Accounts:"
+                }
+            },
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": ":warning: A new Contractual Account is created only when an Initial IO is signed. The CA would be related to it (unless you make changes in the connections). That is why when you make important updates at the IO level (platform, company, agency), you have to either re-sign the IO or to link the IO to an existing CA. In the last case, remember that an IO (if it is not an Initial IO) and its related CA always have to be linked to the same Initial IO. If they are not, make the change at the IO level, never at the CA level."
+                }
+            },
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": ":eyes: Here is how you have to understand the name of a CA.\n 1. CA stands for Contractual Account \n 2. Then comes the name of the Company Account, linked to the current IO \n 3. There here is the name of the mentioned platform of the IO \n 4. Here comes a precision regarding the Client mode : Managed Service (MS) or Self Service (SS) \n 5. If it exists, the name ends by the Contracted Agency"
+                }
+            },
+            {
+                "type": "image",
+                "title": {
+                    "type": "plain_text",
+                    "text": "Contractual Account name",
+                    "emoji": True
+                },
+                "image_url": "https://i.postimg.cc/Jhgrf6VW/ca-explained.png",
+                "alt_text": "image1"
+            }
+            ]
+            
+    say(blocks=blocks)
+    
 @app.action("button-ca2")
 def action_button_ca2(ack, say):
     ack()
@@ -1848,14 +1944,49 @@ def action_button7(ack, say):
                 "type": "section",
                 "text": {
                     "type": "mrkdwn",
-                    "text": ":arrow_right: If a sales needs to change the Contracted Agency of an IO, or to add one, he has to create a new Initial IO. Signing it will create a new CA, with the Contracted Agency in the name. If the previous IO was a mistake, since the agency was inaccurate, it has to be cancelled."
+                    "text": ":arrow_right: If a sales needs to change the Contracted Agency of an IO, or to add one, *because he signs a new contract*, he has to create a new Initial IO. Signing it will create a new CA, with the Contracted Agency in the name."
                 }
             },
             {
                 "type": "section",
                 "text": {
                     "type": "mrkdwn",
-                    "text": ":white_check_mark: Sometimes, it may happen that the IO already has a Contracted Agency, but the related CA has not. In this case, you have to link the IO with the correct CA. Don't forget to ensure that the CA and the IO are related to the same Initial IO, otherwise make the correction *at the IO level*."
+                    "text": ":white_check_mark: Sometimes, it may happen that the IO already has a Contracted Agency, but the related Contractual Account has not. In this case, you have to link the IO with the correct Contractual Account if it exists. Don't forget to ensure that the Contractual Account and the IO are related to the same Initial IO, otherwise make the correction *at the IO level*."
+                }
+            },
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": ":arrow_right: *If it is the wrong agency (due to a mistake)*, then follow the procedure in order to make the change:"
+                }
+            },
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": ":one: Uncheck the *IO Signed Box*, then switch the status bar to \"Approved\" if it is not done automatically."
+                }
+            },
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": ":two: Remove the attached Contractual Account (use Salesforce Inspector to erase the corresponding field)."
+                }
+            },
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": ":three: The sales can update the needed changes, then he can *resign the SAME Initial IO*. It would generate a new Contractual Account (It has to be updated in RMP)."
+                }
+            },
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": ":four: Then you can move all Budget IOs to the new Contractual Account (simply change the Contractual Account field at the Budget IO level)."
                 }
             }
             ]
