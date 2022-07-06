@@ -8,3 +8,4 @@ IO_change_type.PNG  ->  https://i.postimg.cc/xTt8QbwJ/approved-inspector.png
 op_ex1.PNG  ->  https://i.postimg.cc/wjB5zwRf/op-ex1.png
 op_ex2.PNG  ->  https://i.postimg.cc/7hnr0YLP/op-ex2.png
 op_ex3.PNG  ->  https://i.postimg.cc/Jn8TJ3HJ/op-ex3.png
+ca_explained.PNG  ->  https://i.postimg.cc/Jhgrf6VW/ca-explained.png
