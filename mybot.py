@@ -575,7 +575,7 @@ def action_button2(ack, say):
                 "type": "section",
                 "text": {
                     "type": "mrkdwn",
-                    "text": "Ok! If you are changing the platform of a signed IO, do not forget to *uncheck* (i.e. *un-sign*) *the IO*. \n What is the type of change?"
+                    "text": "Ok! If you are changing the platform of a signed IO, do not forget to *uncheck* (i.e. *un-sign*) *the IO*. \n Secondly, be very aware of *the type of IO* you are dealing with : Initial IO (the current term of the CA) or Budget IO.\n What is the type of change?"
                 }
             },
             {
@@ -638,180 +638,226 @@ def action_button2(ack, say):
 @app.action("button-platform1")
 def action_platform1(ack, say):
     ack()
-    blocks = [{
-                    "type": "section",
-                    "text": {
-                        "type": "mrkdwn",
-                        "text": "Okay, you need to follow the steps below:"
-                    }
-                },
-                {
-                    "type": "section",
-                    "text": {
-                        "type": "mrkdwn",
-                        "text": "*:one: Check if there is not already an existing Contracutal Account with the new platform*. Go to the hierarchy icon and look for the accurate CA. To do that, click on the current CA and then you will find the hierarchy icon to the right of the name above. \n If you find the CA field empty (rare), try the Company/Advertiser name."
-                    }
-                },
-                {
-                    "type": "image",
-                    "title": {
-                        "type": "plain_text",
-                        "text": "Hierarchy icon",
-                        "emoji": True
-                    },
-                    "image_url": "https://i.postimg.cc/9F6nqxLc/chatterbot-hierarchy.png",
-                    "alt_text": "image1"
-                },
-                {
-                    "type": "section",
-                    "text": {
-                        "type": "mrkdwn",
-                        "text": ":two: If the accurate CA already exists, click on it and copy the ID in the URL. Then use Salesfroce Inspector to paste the new ID in the contractual account field, for the IO in question. Then you can change the platform field."
-                    }
-                },
-                {
-                    "type": "image",
-                    "title": {
-                        "type": "plain_text",
-                        "text": "Contractual Account ID in URL",
-                        "emoji": True
-                    },
-                    "image_url": "https://i.postimg.cc/3N1p5n2D/chatterbot-ca-id.png",
-                    "alt_text": "image1"
-                },
-                {
-                    "type": "section",
-                    "text": {
-                        "type": "mrkdwn",
-                        "text": ":three: Finally, the sales need to resign the IO with the client. If it is already done, just check the box 'IO Signed by Client' :white_square: (do not forget to put \"manual signature\")."
-                    }
-                },
-                {
-                    "type": "divider"
+    blocks = [
+            {
+                "type": "divider"
+            },
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": ":arrow_right: If you are on a CA's current term (Initial IO), just change the platform. When the IO would be signed, a new CA would be generated."
                 }
-                ]
+            },
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": ":warning::arrow_right: If the current term is an Amendment IO, you have to correct the platform on both the Initial IO and the Amendment IO. *Then check and uncheck the PO Required Flag* (or the other way around if it is already checked) in order to register the change in BRIM. Then, if there are Budget IOs, change the platform on these IOs."
+                }
+            },
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": ":arrow_right: If you are on a Budget IO, you need to follow the steps below:"
+                }
+            },
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": "*:one: Check if there is not already an existing Contracutal Account with the new platform*. Go to the hierarchy icon and look for the accurate CA. To do that, click on the current CA and then you will find the hierarchy icon to the right of the name above. \n If you find the CA field empty (rare), try the Company/Advertiser name."
+                }
+            },
+            {
+                "type": "image",
+                "title": {
+                    "type": "plain_text",
+                    "text": "Hierarchy icon",
+                    "emoji": True
+                },
+                "image_url": "https://i.postimg.cc/9F6nqxLc/chatterbot-hierarchy.png",
+                "alt_text": "image1"
+            },
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": ":two: If the accurate CA already exists, click on it and copy the ID in the URL. Then use Salesfroce Inspector to paste the new ID in the contractual account field, for the IO in question. Only after that, you can change the platform field."
+                }
+            },
+            {
+                "type": "image",
+                "title": {
+                    "type": "plain_text",
+                    "text": "Contractual Account ID in URL",
+                    "emoji": True
+                },
+                "image_url": "https://i.postimg.cc/3N1p5n2D/chatterbot-ca-id.png",
+                "alt_text": "image1"
+            },
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": ":three: Finally, the sales need to resign the IO with the client. If it is already done, just check the box 'IO Signed by Client' :white_square: (do not forget to put \"manual signature\")."
+                }
+            },
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": ":warning: If there is no CA with the corresponding platform, the Budget IO needs to be transformed into an Initial IO."
+                }
+            }
+            ]
     
     say(blocks=blocks)
     
 @app.action("button-platform2")
 def action_platform2(ack, say):
     ack()
-    blocks =blocks = [{
-                    "type": "section",
-                    "text": {
-                        "type": "mrkdwn",
-                        "text": "Okay, you need to follow the steps below:"
-                    }
-                },
-                {
-                    "type": "section",
-                    "text": {
-                        "type": "mrkdwn",
-                        "text": "*:one: Check if there is not already an existing Contracutal Account with the new platform*. Go to the hierarchy icon and look for the accurate CA. To do that, click on the current CA and then you will find the hierarchy icon to the right of the name above. \n If you find the CA field empty (rare), try the Company/Advertiser name."
-                    }
-                },
-                {
-                    "type": "image",
-                    "title": {
-                        "type": "plain_text",
-                        "text": "Hierarchy icon",
-                        "emoji": True
-                    },
-                    "image_url": "https://i.postimg.cc/9F6nqxLc/chatterbot-hierarchy.png",
-                    "alt_text": "image1"
-                },
-                {
-                    "type": "section",
-                    "text": {
-                        "type": "mrkdwn",
-                        "text": ":two: If the accurate CA already exists, click on it and copy the ID in the URL. Then use Salesfroce Inspector to paste the new ID in the contractual account field, for the IO in question. Then you can change the platform field."
-                    }
-                },
-                {
-                    "type": "image",
-                    "title": {
-                        "type": "plain_text",
-                        "text": "Contractual Account ID in URL",
-                        "emoji": True
-                    },
-                    "image_url": "https://i.postimg.cc/3N1p5n2D/chatterbot-ca-id.png",
-                    "alt_text": "image1"
-                },
-                {
-                    "type": "section",
-                    "text": {
-                        "type": "mrkdwn",
-                        "text": ":three: Finally, the sales need to resign the IO with the client. If it is already done, just check the box 'IO Signed by Client' :white_square: (do not forget to put \"manual signature\")."
-                    }
-                },
-                {
-                    "type": "divider"
+    blocks = [
+            {
+                "type": "divider"
+            },
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": ":arrow_right: If you are on a CA's current term (Initial IO), you can make the change freely."
                 }
-                ]
+            },
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": ":arrow_right: If you are on a Budget IO, you need to follow the steps below:"
+                }
+            },
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": "*:one: Check if there is not already an existing Contracutal Account with the new platform*. Go to the hierarchy icon and look for the accurate CA. To do that, click on the current CA and then you will find the hierarchy icon to the right of the name above. \n If you find the CA field empty (rare), try the Company/Advertiser name."
+                }
+            },
+            {
+                "type": "image",
+                "title": {
+                    "type": "plain_text",
+                    "text": "Hierarchy icon",
+                    "emoji": True
+                },
+                "image_url": "https://i.postimg.cc/9F6nqxLc/chatterbot-hierarchy.png",
+                "alt_text": "image1"
+            },
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": ":two: If the accurate CA already exists, click on it and copy the ID in the URL. Then use Salesfroce Inspector to paste the new ID in the contractual account field, for the IO in question. Only after that, you can change the platform field."
+                }
+            },
+            {
+                "type": "image",
+                "title": {
+                    "type": "plain_text",
+                    "text": "Contractual Account ID in URL",
+                    "emoji": True
+                },
+                "image_url": "https://i.postimg.cc/3N1p5n2D/chatterbot-ca-id.png",
+                "alt_text": "image1"
+            },
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": ":three: Finally, the sales need to resign the IO with the client. If it is already done, just check the box 'IO Signed by Client' :white_square: (do not forget to put \"manual signature\")."
+                }
+            }
+            ]
+
     say(blocks=blocks)
 
 @app.action("button-platform3")
 def action_platform3(ack, say):
     ack()
-    blocks = [{
-                    "type": "section",
-                    "text": {
-                        "type": "mrkdwn",
-                        "text": "Okay, you need to follow the steps below:"
-                    }
-                },
-                {
-                    "type": "section",
-                    "text": {
-                        "type": "mrkdwn",
-                        "text": "*:one: Check if there is not already an existing Contracutal Account with the new platform*. Go to the hierarchy icon and look for the accurate CA. To do that, click on the current CA and then you will find the hierarchy icon to the right of the name above. \n If you find the CA field empty (rare), try the Company/Advertiser name."
-                    }
-                },
-                {
-                    "type": "image",
-                    "title": {
-                        "type": "plain_text",
-                        "text": "Hierarchy icon",
-                        "emoji": True
-                    },
-                    "image_url": "https://i.postimg.cc/9F6nqxLc/chatterbot-hierarchy.png",
-                    "alt_text": "image1"
-                },
-                {
-                    "type": "section",
-                    "text": {
-                        "type": "mrkdwn",
-                        "text": ":two: If the accurate CA already exists, click on it and copy the ID in the URL. Then use Salesfroce Inspector to paste the new ID in the contractual account field, for the IO in question. Then you can change the platform field."
-                    }
-                },
-                {
-                    "type": "image",
-                    "title": {
-                        "type": "plain_text",
-                        "text": "Contractual Account ID in URL",
-                        "emoji": True
-                    },
-                    "image_url": "https://i.postimg.cc/3N1p5n2D/chatterbot-ca-id.png",
-                    "alt_text": "image1"
-                },
-                {
-                    "type": "section",
-                    "text": {
-                        "type": "mrkdwn",
-                        "text": ":three: If the changing is RMP :arrow_right: Erms, *contact Goeffrey Sorel*, to tell him to change the Financial Account linked to this IO (this is the only case where this step is necessary)."
-                    }
-                },
-                {
-                    "type": "section",
-                    "text": {
-                        "type": "mrkdwn",
-                        "text": ":four: Finally, the sales need to resign the IO with the client. If it is already done, just check the box 'IO Signed by Client' :white_square: (do not forget to put \"manual signature\")."
-                    }
-                },
-                {
-                    "type": "divider"
+    blocks = [
+            {
+                "type": "divider"
+            },
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": ":arrow_right: If you are on a CA's current term (Initial IO), check if there are commercial conditions or not. If there are not, then the sales needs to generate a CPOP ID. The platform needs to be changed in the Initial IO AND in the Contractual Account. Then change the platform fields in the associated Budget IOs. However, *if there are specific commercial conditions in the IO PDF*, the sales needs to sign a new Initial IO. Then the associated Budget IOs need to be changed to the new Contractual Account (follow the steps bellow). And then, change the platform fields at the Budget IO level."
                 }
-                ]
+            },
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": "*For the Budget IOs, you need to follow the steps below:"
+                }
+            },
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": "*:one: Check if there is not already an existing Contracutal Account with the new platform*. Go to the hierarchy icon and look for the accurate CA. To do that, click on the current CA and then you will find the hierarchy icon to the right of the name above. \n If you find the CA field empty (rare), try the Company/Advertiser name."
+                }
+            },
+            {
+                "type": "image",
+                "title": {
+                    "type": "plain_text",
+                    "text": "Hierarchy icon",
+                    "emoji": True
+                },
+                "image_url": "https://i.postimg.cc/9F6nqxLc/chatterbot-hierarchy.png",
+                "alt_text": "image1"
+            },
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": ":two: If the accurate CA already exists, click on it and copy the ID in the URL. Then use Salesfroce Inspector to paste the new ID in the contractual account field, for the IO in question. Only after that, you can change the platform field."
+                }
+            },
+            {
+                "type": "image",
+                "title": {
+                    "type": "plain_text",
+                    "text": "Contractual Account ID in URL",
+                    "emoji": True
+                },
+                "image_url": "https://i.postimg.cc/3N1p5n2D/chatterbot-ca-id.png",
+                "alt_text": "image1"
+            },
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": ":three: If the changing is RMP :arrow_right: Erms and if the Budget IO is signed, *contact Goeffrey Sorel*, to tell him to change the Financial Account linked to this IO (this is the only case where this step is necessary)."
+                }
+            },
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": ":four: Finally, the sales need to resign the IO with the client. If it is already done, just check the box 'IO Signed by Client' :white_square: (do not forget to put \"manual signature\")."
+                }
+            },
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": ":warning: If there is no CA with the corresponding platform, the Budget IO needs to be transformed into an Initial IO."
+                }
+            }
+            ]
     
     say(blocks=blocks)
 
@@ -886,6 +932,96 @@ def action_button3(ack, say):
                 }
             }
             ]
+    say(blocks=blocks)
+    
+    
+@app.action("button-contact1")
+def action_button_contact1(ack, say):
+    ack()
+    blocks = [
+            {
+                "type": "divider"
+            },
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": ":no_entry_sign: *DON'T EVER DO IT BY YOURSELF*."
+                }
+            }
+            ]
+            
+    say(blocks=blocks)
+    
+@app.action("button-contact2")
+def action_button_contact2(ack, say):
+    ack()
+    blocks = [
+            {
+                "type": "divider"
+            },
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": "Sometimes you can be asked to delete a contact from the account page of a company. You have to follow some steps to do so:"
+                }
+            },
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": ":one: Go to the Contacts tab at the Account level and spot the contacts you have to delete. If there is a trash icon on the left, click on it."
+                }
+            },
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": ":two: If there is not, click on the contact name. In the contact account page, change the *Account Name* field (which is related to the company account you're working on), remove the company name and replace it by a test account (the most used is *Test Selin Company* for instance)."
+                }
+            },
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": ":three: Return to the Contacts tab of the Company page. The trash icon appears now, you can click on it."
+                }
+            }
+            ]
+            
+    say(blocks=blocks)
+
+@app.action("button-contact3")
+def action_button_contact3(ack, say):
+    ack()
+    blocks = [
+            {
+                "type": "divider"
+            },
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": "Sometimes, the fact that the owner of an IO is inactive (meaning that the persons left or has changed of job) prevents the updates or the sending from being made. It is necessary to change the owner to an active member."
+                }
+            },
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": ":arrow_right: Go to the top of the page, and spot the owner field. Click on the icon to the right and change the owner to an active member."
+                }
+            },
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": ":warning: The other contacts (Sales/AS, eSigner, etc.) always have to be active as well."
+                }
+            }
+            ]
+    
     say(blocks=blocks)
     
 ############ Oportunity questions ########################"
@@ -1067,6 +1203,48 @@ def action_button_op2(ack, say):
                 "image_url": "https://i.postimg.cc/Jn8TJ3HJ/op-ex3.png",
                 "alt_text": "image1"
             }            
+            ]
+            
+    say(blocks=blocks)
+
+@app.action("button-opportunity3")
+def action_button_opp3(ack, say):
+    ack()
+    blocks = [
+            {
+                "type": "divider"
+            },
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": "A Renewal IO, like an Initial IO, is created from an opportunity. *It is not possible to have an Initial IO and a Renewal IO for the same opportunity*."
+                }
+            },
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": ":eyes: Unlike an Initial IO, a Renewal IO does not contain Billing information, it is shorter. A Renewal IO is created when an Initial IO already exists with the company, it is used to restart a campaign, to change some information like the budget amount, the fees or the Client Mode. *A Budget IO and a Renewal IO are the same thing*."
+                }
+            },
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": ":warning: While creating a Renewal IO, it is necessary to be careful about the alignment with the Contractual Account (same Contracted Agency for instance, same Initial IO if it is a Budget IO. As a reminder, a new Contractual Account is created when a Initial IO is signed). To see further details about CA :arrow_right:"
+                },
+                "accessory": {
+                    "type": "button",
+                    "text": {
+                        "type": "plain_text",
+                        "text": "Click Me",
+                        "emoji": True
+                    },
+                    "value": "click_me_123",
+                    "action_id": "button-ca1"
+                }
+            }
             ]
             
     say(blocks=blocks)
@@ -1637,7 +1815,14 @@ def action_button_io5(ack, say):
                 "type": "section",
                 "text": {
                     "type": "mrkdwn",
-                    "text": ":warning: Having an end date AND a PPC Box checked may cause some troubles. Ensure that there is no such kind of duplication."
+                    "text": ":warning: Having an end date AND a PPC Box checked may cause some troubles. Ensure that there is no such kind of duplication and remove the end date if necessary."
+                }
+            },
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": ":warning: Sometimes, it is also necessary to have the Budget Type populated with \"Uncapped\" if the PPC Box is checked."
                 }
             }
             ]
