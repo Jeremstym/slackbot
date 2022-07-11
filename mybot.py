@@ -4,9 +4,7 @@ from slack_bolt import App
 from slack_bolt.adapter.socket_mode import SocketModeHandler
 
 # Initializes your app with your bot token and socket mode handler
-SLACK_BOT_TOKEN = "xoxb-2329760138-3779722755941-gFACma4z1feQsDDDVjnqjAC1"
-# app = App(token=os.environ.get("SLACK_BOT_TOKEN"))
-app = App(token=SLACK_BOT_TOKEN)
+app = App(token=os.environ.get("SLACK_BOT_TOKEN"))
 
 # Listens to incoming messages that contain "hello"
 # To learn available listener arguments,
@@ -2182,8 +2180,6 @@ def action_button7(ack, say):
 
 
 # Start your app
-SLACK_APP_TOKEN = "xapp-1-A03PQBDKUCQ-3782584180899-c4c2756ec684e36057daeff76ca83a560ad4c2e03f040bc10b9e0406638eddb1"
 
 if __name__ == "__main__":
-    # SocketModeHandler(app, os.environ["SLACK_APP_TOKEN"]).start()
-    SocketModeHandler(app, SLACK_APP_TOKEN).start()
+    SocketModeHandler(app, os.environ["SLACK_APP_TOKEN"]).start()
