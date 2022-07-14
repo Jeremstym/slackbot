@@ -9,3 +9,7 @@ op_ex1.PNG  ->  https://i.postimg.cc/wjB5zwRf/op-ex1.png
 op_ex2.PNG  ->  https://i.postimg.cc/7hnr0YLP/op-ex2.png
 op_ex3.PNG  ->  https://i.postimg.cc/Jn8TJ3HJ/op-ex3.png
 ca_explained.PNG  ->  https://i.postimg.cc/Jhgrf6VW/ca-explained.png
+weburl_CPOP.PNG  ->  https://i.postimg.cc/L4QBdfkZ/weburl-CPOP.png
+RSX_integration_CPOP.PNG  ->  https://i.postimg.cc/CM2Dr0YG/RSX-integration-CPOP.png
+company_weburl_CPOP.PNG  ->  https://i.postimg.cc/jdQMpC5V/company-weburl-CPOP.png
+New_integration_CPOP.PNG  ->  https://i.postimg.cc/L5FV7MF6/New-integration-CPOP.png
