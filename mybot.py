@@ -28,6 +28,23 @@ def message_hello(message, say):
         text=f"Hey there <@{message['user']}>!"
     )
     
+@app.message(re.compile("(help|Help)"))
+def message_help(say):
+    blocks = [
+            {
+                "type": "divider"
+            },
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": "Hey there :elephant: Welcome to the Chatter Bot. Here you can select every topics you need to know more about. To start the exploration, just write \"start\"."
+                }
+            }
+            ]
+            
+    say(blocks=blocks)
+
 @app.message(re.compile("start"))
 def message_start(message, say):
     blocks = [
@@ -172,7 +189,7 @@ def message_start(message, say):
 def action_button_click(body, ack, say):
     # Acknowledge the action
     ack()
-    say(f"<@{body['user']['id']}> clicked the button")
+    say(f"<@{body['user']['id']}> clicked the button. Now you can write \"start\".")
     
     
 # Sends a section block with datepicker when someone reacts with a 📅 emoji
@@ -214,40 +231,40 @@ def action_button1(ack, say):
             {
                 "type": "divider"
             },
-            {
-                "type": "section",
-                "text": {
-                    "type": "mrkdwn",
-                    "text": "Address"
-                },
-                "accessory": {
-                    "type": "button",
-                    "text": {
-                        "type": "plain_text",
-                        "text": "Click Me",
-                        "emoji": True
-                    },
-                    "value": "click_me_123",
-                    "action_id": "button-company1"
-                }
-            },
-            {
-                "type": "section",
-                "text": {
-                    "type": "mrkdwn",
-                    "text": "Account Type Field"
-                },
-                "accessory": {
-                    "type": "button",
-                    "text": {
-                        "type": "plain_text",
-                        "text": "Click Me",
-                        "emoji": True
-                    },
-                    "value": "click_me_123",
-                    "action_id": "button-company2"
-                }
-            },
+            # {
+                # "type": "section",
+                # "text": {
+                    # "type": "mrkdwn",
+                    # "text": "Address"
+                # },
+                # "accessory": {
+                    # "type": "button",
+                    # "text": {
+                        # "type": "plain_text",
+                        # "text": "Click Me",
+                        # "emoji": True
+                    # },
+                    # "value": "click_me_123",
+                    # "action_id": "button-company1"
+                # }
+            # },
+            # {
+                # "type": "section",
+                # "text": {
+                    # "type": "mrkdwn",
+                    # "text": "Account Type Field"
+                # },
+                # "accessory": {
+                    # "type": "button",
+                    # "text": {
+                        # "type": "plain_text",
+                        # "text": "Click Me",
+                        # "emoji": True
+                    # },
+                    # "value": "click_me_123",
+                    # "action_id": "button-company2"
+                # }
+            # },
             {
                 "type": "section",
                 "text": {
@@ -299,23 +316,23 @@ def action_button1(ack, say):
                     "action_id": "button-company5"
                 }
             },
-            {
-                "type": "section",
-                "text": {
-                    "type": "mrkdwn",
-                    "text": "Account Team (sales process)"
-                },
-                "accessory": {
-                    "type": "button",
-                    "text": {
-                        "type": "plain_text",
-                        "text": "Click Me",
-                        "emoji": True
-                    },
-                    "value": "click_me_123",
-                    "action_id": "button-company6"
-                }
-            },
+            # {
+                # "type": "section",
+                # "text": {
+                    # "type": "mrkdwn",
+                    # "text": "Account Team (sales process)"
+                # },
+                # "accessory": {
+                    # "type": "button",
+                    # "text": {
+                        # "type": "plain_text",
+                        # "text": "Click Me",
+                        # "emoji": True
+                    # },
+                    # "value": "click_me_123",
+                    # "action_id": "button-company6"
+                # }
+            # },
             {
                 "type": "section",
                 "text": {
@@ -350,26 +367,27 @@ def action_button1(ack, say):
                     "action_id": "button-company8"
                 }
             },
-            {
-                "type": "section",
-                "text": {
-                    "type": "mrkdwn",
-                    "text": "Sales/AS fields (Retail Media)"
-                },
-                "accessory": {
-                    "type": "button",
-                    "text": {
-                        "type": "plain_text",
-                        "text": "Click Me",
-                        "emoji": True
-                    },
-                    "value": "click_me_123",
-                    "action_id": "button-company9"
-                }
-            }
+            # {
+                # "type": "section",
+                # "text": {
+                    # "type": "mrkdwn",
+                    # "text": "Sales/AS fields (Retail Media)"
+                # },
+                # "accessory": {
+                    # "type": "button",
+                    # "text": {
+                        # "type": "plain_text",
+                        # "text": "Click Me",
+                        # "emoji": True
+                    # },
+                    # "value": "click_me_123",
+                    # "action_id": "button-company9"
+                # }
+            # }
             ]
+            
     say(blocks=blocks)
-    
+
 @app.action("button-company3")
 def action_button_company3(ack, say):
     ack()
@@ -488,7 +506,7 @@ def action_button_company7(ack, say):
                 "type": "section",
                 "text": {
                     "type": "mrkdwn",
-                    "text": ":warning: There is a procedure to follow while switching an account from company to business unit:"
+                    "text": ":warning: There is a procedure to follow *at the IO level* while changing an account from a company to a business unit:"
                 }
             },
             {
@@ -918,7 +936,7 @@ def action_button3(ack, say):
                 "type": "section",
                 "text": {
                     "type": "mrkdwn",
-                    "text": "Active/inactive account"
+                    "text": "Active/Inactive contacts"
                 },
                 "accessory": {
                     "type": "button",
@@ -1010,21 +1028,28 @@ def action_button_contact3(ack, say):
                 "type": "section",
                 "text": {
                     "type": "mrkdwn",
-                    "text": ":arrow_right: Go to the top of the page, and spot the owner field. Click on the icon to the right and change the owner to an active member."
+                    "text": ":eyes: A contact can be inactive if the email address is not detected as valid."
                 }
             },
             {
                 "type": "section",
                 "text": {
                     "type": "mrkdwn",
-                    "text": ":warning: The other contacts (Sales/AS, eSigner, etc.) always have to be active as well."
+                    "text": ":arrow_right: After checking with the sales, two solutions: either it is an error of Salesforce and then you go to the contact page and change the status to active (in the corresponding field), or the contact is really inactive and you have to change it, with the sales agreement."
+                }
+            },
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": ":warning: An inactive contact cannot be used as Primary Contact nor eSigner. It has to be active and valid."
                 }
             }
             ]
     
     say(blocks=blocks)
     
-############ Oportunity questions ########################"
+############ Opportunity questions ########################"
     
 @app.action("button-action4")
 def action_button4(ack, say):
@@ -1132,7 +1157,11 @@ def action_opportunity1(ack, say):
                     }
                 },
                 {
-                    "type": "divider"
+                    "type": "section",
+                    "text": {
+                        "type": "mrkdwn",
+                        "text": ":white_check_mark: It happens that a sales want to create an opportunity for a campaign that has already run and ended. In this case, the sales has to create the opportunity and the IO with the wrong dates (because Salesforce will not allow dates in the past, and then you can change the dates with the bypass validation, once everything is completed."
+                    }
                 }
                 ]
     
@@ -1173,14 +1202,14 @@ def action_button_op2(ack, say):
                 "type": "section",
                 "text": {
                     "type": "mrkdwn",
-                    "text": ":eyes: It is possible to have only one Initial IO by Opportunity. If you want a new Initial IO, you have to cancel the previous one."
+                    "text": ":eyes: It is possible to have only one Initial IO OR one Renewal IO by Opportunity. If you want to create a new IO, you have to cancel the previous one."
                 }
             },
             {
                 "type": "section",
                 "text": {
                     "type": "mrkdwn",
-                    "text": "*Creating an Opportunity Product is creating an IOD on the related IO in the same time*, with the same product (IO Product). The two products have to be the same, otherwise there would be an error. You can find the related IOD in the IO Details tab of the corresponding IO."
+                    "text": "*Creating an Opportunity Product entails the creation of an IOD on the related IO in the same time*, with the same product (IO Product). The sales have to link the OP to the IOD (it is not done automatically). The two products have to be the same, otherwise there would be an error. You can find the related IOD in the IO Details tab of the corresponding IO."
                 }
             },
             {
@@ -1232,7 +1261,7 @@ def action_button_opp3(ack, say):
                 "type": "section",
                 "text": {
                     "type": "mrkdwn",
-                    "text": ":warning: While creating a Renewal IO, it is necessary to be careful about the alignment with the Contractual Account (same Contracted Agency for instance, same Initial IO if it is a Budget IO. As a reminder, a new Contractual Account is created when a Initial IO is signed). To see further details about CA :arrow_right:"
+                    "text": ":warning: While creating a Renewal IO, it is necessary to be careful about the alignment with the Contractual Account (same Contracted Agency for instance, same Initial IO if it is a Budget IO. As a reminder, a new Contractual Account is created when an Initial IO is signed). To see further details about CA :arrow_right:"
                 },
                 "accessory": {
                     "type": "button",
@@ -1428,23 +1457,23 @@ def action_button5(ack, say):
                     "action_id": "button-io7"
                 }
             },
-            {
-                "type": "section",
-                "text": {
-                    "type": "mrkdwn",
-                    "text": "Change Order (upsell/downsell)"
-                },
-                "accessory": {
-                    "type": "button",
-                    "text": {
-                        "type": "plain_text",
-                        "text": "Click Me",
-                        "emoji": True
-                    },
-                    "value": "click_me_123",
-                    "action_id": "button-io8"
-                }
-            },
+            # {
+                # "type": "section",
+                # "text": {
+                    # "type": "mrkdwn",
+                    # "text": "Change Order (upsell/downsell)"
+                # },
+                # "accessory": {
+                    # "type": "button",
+                    # "text": {
+                        # "type": "plain_text",
+                        # "text": "Click Me",
+                        # "emoji": True
+                    # },
+                    # "value": "click_me_123",
+                    # "action_id": "button-io8"
+                # }
+            # },
             {
                 "type": "section",
                 "text": {
@@ -1620,7 +1649,7 @@ def action_button_iod1(ack, say):
                 "type": "section",
                 "text": {
                     "type": "mrkdwn",
-                    "text": "Ok! That's one of the most common task. Follow the steps below."
+                    "text": "That's one of the most common task. A sales wants to update the IO dates because the clients asked for it or because the billing team did. Follow the steps below."
                 }
             },
             {
@@ -1637,7 +1666,21 @@ def action_button_iod1(ack, say):
                 "type": "section",
                 "text": {
                     "type": "mrkdwn",
-                    "text": ":two: Otherwise, you have to go to the *IO Details* and change the dates at the IOD level."
+                    "text": ":arrow_right: The correct process is to do a *Change Order* for *date extension* in this case. When the billing team asks for a date change, just change the dates at the IO level, not at the IOD level."
+                    }
+            },
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": ":warning: If the CO \"date extension\" has been maid, check the IO Details tab, if there is indeed a Change Order for date extension."
+                    }
+            },
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": ":two: Otherwise, if this is not a \"date extension\" matter, you have to go to the *IO Details* and change the dates at the IOD level."
                     }
             },
             {
@@ -1646,23 +1689,6 @@ def action_button_iod1(ack, say):
                     "type": "mrkdwn",
                     "text": ":three: If the dates did not change automatically at the IO level, change them."
                 }
-            },
-            {
-                "type": "section",
-                "text": {
-                    "type": "mrkdwn",
-                    "text": ":eyes: It would be necessary to have the \"*IO Change Type*\" field populated. If this is not the case, ask to the sales what value to put."
-                }
-            },
-            {
-                    "type": "image",
-                    "title": {
-                        "type": "plain_text",
-                        "text": "IO Change Type",
-                        "emoji": True
-                    },
-                    "image_url": "https://i.postimg.cc/1Xg7WrBp/IO-change-type.png",
-                    "alt_text": "image1"
             },
             {
                 "type": "section",
@@ -1681,16 +1707,112 @@ def action_button_iod1(ack, say):
                     "action_id": "short_cut_close_date"
                 }
             },
+            # {
+                # "type": "section",
+                # "text": {
+                    # "type": "mrkdwn",
+                    # "text": ":no_entry_sign: In the Change Order case, *you must not populate the start/end dates* if they already exist in the IOD. Just populate the \"Original Start Date\" and the \"Original End Date\"."
+                # }
+            # }
+            ]
+    say(blocks=blocks)  
+    
+@app.action("button-iod2")
+def action_button_io2(ack, say):
+    ack()
+    blocks = [
+            {
+                "type": "divider"
+            },
             {
                 "type": "section",
                 "text": {
                     "type": "mrkdwn",
-                    "text": ":no_entry_sign: In the Change Order case, *you must not populate the start/end dates* if they already exist in the IOD. Just populate the \"Original Start Date\" and the \"Original End Date\"."
+                    "text": "*Definition*: A Change Order is an operation that enables to extend the campaign dates or to modify the budget of the campaign (upsell/downsell). The sales has to create the Change Order at the IO level, select the correct Change Order Type and then link it to the corresponding IO Product (cf. Opportunity Product). This operation updates the Revised Budget (when the status is \"Validated\" or \"Pending Validation\")."
+                }
+            },
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": ":warning: When the Change Order is a downsell, the budget amount must be negative (with the minus sign)."
+                }
+            },
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": ":eyes: Sometimes, an error occurs when creating a CO with an end date lower than the Original End Date. In this case, remove the Original End Date and adapt the main page of the IO."
+                }
+            },
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": ":warning: To create a new Change Order, it is necessary that *the previous one is either Validated or Cancelled*."
                 }
             }
             ]
-    say(blocks=blocks)  
     
+    say(blocks=blocks)
+    
+@app.action("button-iod3")
+def action_button_io3(ack, say):
+    ack()
+    blocks = [
+            {
+                "type": "divider"
+            },
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": "Basically, an IO Product is the first IOD created with an IO. It is linked to an Opportunity Product, linked to the product sold with the contract (for instance, Commerce Display). A Change Order is created after, when a change in the budget amount or in the campaign dates is necessary. These are IODs as well."
+                }
+            },
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": ":warning: Even if a Change Order is cancelled, it must be linked to an IO Product, otherwise Salesforce sends an error."
+                }
+            },
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": ":eyes: It is important to link a CO to the IO Product, because it gets the information from it (dates, budget, etc.). It retrieves the features of the Opportunity Product, related to the IO. All this information is visible in the PDF contract."
+                }
+            }
+            ]
+            
+    say(blocks=blocks)
+    
+@app.action("button-iod4")
+def action_button_io4(ack, say):
+    ack()
+    blocks = [
+            {
+                "type": "divider"
+            },
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": "*The Change Order status* depends on the signature of the IO/IOD. When a CO is created, the original IO is already signed. The status is then \"New\" for the CO. When it is \"Pending Validation\", the CO has been sent to the client for approval and signature. When it is \"Validated\", all the parties have signed the new contract."
+                }
+            },
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": ":warning: It is not possible to create a Change Order if there is already a Change Order \"New\" or \"Pending Validation\". If a sales needs to make changes, put the status on \"New\" so it is possible to directly make the modifications on the CO. Otherwise, it is also possible to cancel the current CO and to create a new one."
+                }
+            }
+            ]
+            
+    say(blocks=blocks)
+            
 ######----------------------------------------------------
 
 @app.action("button-io2")
@@ -1704,7 +1826,7 @@ def action_button_io2(ack, say):
                 "type": "section",
                 "text": {
                     "type": "mrkdwn",
-                    "text": "The status of an IOD is on pending validation when the IO is sent and the Retail Media team has to approve it. *You cannot change this status* since the contract is sent and there is no modification to be done."
+                    "text": "The status of an IO is equal to \"pending validation\" when the IO is sent to the client. *You cannot change this status* since the contract is sent and there is no modification to be done."
                 }
             },
             {
@@ -1728,7 +1850,7 @@ def action_button_io2(ack, say):
                 "type": "section",
                 "text": {
                     "type": "mrkdwn",
-                    "text": "*Definition*: Void the envelope means that you make the contract juridically null and void (in order to make new changes and to send the contract again). It is the job of the sales to do it."
+                    "text": "*Definition*: Void the envelope means that you make the contract juridically null and void (in order to make new changes and to send the contract again). It is the job of *the sales who sent the contract* to do it."
                 }
             },
             {
@@ -1747,6 +1869,24 @@ def action_button_io2(ack, say):
             }
             ]
     say(blocks=blocks)
+
+@app.action("button-io3")
+def action_button_io3(ack, say):
+    ack()
+    blocks = [
+            {
+                "type": "divider"
+            },
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": ":x: When the business is cancelled or the sales made a mistake about the IO features, the IO has to be cancelled and it will not be taken into account in the reporting."
+                }
+            }
+            ]
+    
+    say(blocks=blocks)
     
 @app.action("button-io4")
 def action_button_io4(ack, say):
@@ -1759,7 +1899,7 @@ def action_button_io4(ack, say):
                 "type": "section",
                 "text": {
                     "type": "mrkdwn",
-                    "text": "*Usually*, the IO Signed Box is checked automatically when the client signs the contract. Then the *IO Type* is \"Standard with Electronic Signature\". If the IO Type is \"Standard with Manual Signature\", the Sales has to check the IO Signed box."
+                    "text": "*Usually*, the IO Signed Box is checked automatically when the client signs the contract if the *IO Type* is \"Standard with Electronic Signature\". If the IO Type is \"Standard with Manual Signature\", the Sales has to check the IO Signed box."
                 }
             },
             {
@@ -1808,14 +1948,14 @@ def action_button_io5(ack, say):
                 "type": "section",
                 "text": {
                     "type": "mrkdwn",
-                    "text": "*Definition: Pay Per Consumption*: The client can add more budget when it's necessary without signing a new IO. PPC is used when there is no start/end dates. It is enough to sign one IO at the start."
+                    "text": "*Definition: Pay Per Consumption*: The Client pays for what he needs for his use. For instance, if the client doesn't run a campaign, the total paid amount would be 0. The client can add more budget when it's necessary without signing a new IO. PPC is used when there is no start/end dates. It is enough to sign one IO at the start."
                 }
             },
             {
                 "type": "section",
                 "text": {
                     "type": "mrkdwn",
-                    "text": ":warning: Having an end date AND a PPC Box checked may cause some troubles. Ensure that there is no such kind of duplication and remove the end date if necessary."
+                    "text": ":eyes: Generally, when the PPC Box is checked, there is no end date and the budget amount is equal to 0. This is visible in the PDF contract."
                 }
             },
             {
@@ -1829,6 +1969,81 @@ def action_button_io5(ack, say):
           
     say(blocks=blocks)
     
+@app.action("button-io6")
+def action_button_io6(ack, say):
+    ack()
+    blocks = [
+            {
+                "type": "divider"
+            },
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": "*Definition*: The Revised Budget is a field located at the IO level. It must be equal to the Original Budget + the Change Order amount (downsell or upsell). The Change Order can be either validated or pending validation, it would be taken into account (this it not the case if the CO status is \"New\" or \"Cancelled\". The budget would be visible on the contract when it is modified."
+                }
+            },
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": "When a sales asks for modifying a budget, it is generally about the Revised Budget. :warning: Sometimes, an error occurs and it is necessary to change the budget manually. In this case, check if the Change Orders exist before modifying the budget."
+                }
+            },
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": ":eyes: Sometimes, it is necessary to void the envelope when changing the budget of an IO not signed yet."
+                }
+            }
+            ]
+            
+    say(blocks=blocks)
+
+@app.action("button-io7")
+def action_button_io7(ack, say):
+    ack()
+    blocks = [
+            {
+                "type": "divider"
+            },
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": ":eyes: This is the place where you can find the contracts, signed or not. When the contract is signed, the sales have to upload it in this area when it is not done automatically. The area is located to the bottom right of the IO page."
+                }
+            }
+            ]
+            
+    say(blocks=blocks)
+
+@app.action("button-io9")
+def action_button_io9(ack, say):
+    ack()
+    blocks = [
+            {
+                "type": "divider"
+            },
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": "*Definition*: The Working Media Budget is the budget of the campaing, minus the part that Criteo takes. The formula is: WMB = Original Budget - (DSP Fees x Original Budget + Managed Service Fees x Original Budget)"
+                }
+            },
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": ":warning: If a sales asks to modify a WMB so it's equal to a specific value, it is not possible. Generally, the sales has forgotten to populate the DSP or the Managed fees."
+                }
+            }
+            ]
+    
+    say(blocks=blocks)
+
 @app.action("button-io10")
 def action_button_io10(ack, say):
     ack()
@@ -2035,7 +2250,7 @@ def action_button_ca1(ack, say):
                 "type": "section",
                 "text": {
                     "type": "mrkdwn",
-                    "text": ":warning: A new Contractual Account is created only when an Initial IO is signed. The CA would be related to it (unless you make changes in the connections). That is why when you make important updates at the IO level (platform, company, agency), you have to either re-sign the IO or to link the IO to an existing CA. In the last case, remember that an IO (if it is not an Initial IO) and its related CA always have to be linked to the same Initial IO. If they are not, make the change at the IO level, never at the CA level."
+                    "text": ":warning: A new Contractual Account is created only when an Initial IO is signed. The CA would be related to it (unless you make changes in the connections). That is why when you make important updates at the IO level (platform, company, agency), you have to either re-sign the IO or to link the IO to an existing CA. In the last case, remember that a Budget IO and its related CA always have to be linked to the same Initial IO. If they are not, make the change at the IO level, never at the CA level."
                 }
             },
             {
@@ -2080,13 +2295,13 @@ def action_button_ca2(ack, say):
                     "text": ":no_entry_sign: *It is totally unusual to modify information directly on a CA* (even if a sales ask you to do it, don't, unless it is necessary)."
                 }
             },
-            {
-                "type": "section",
-                "text": {
-                    "type": "mrkdwn",
-                    "text": ":warning: You will notice that a CA is linked to one and only one Initial IO. However, many types of IO can be related to a CA (such as Budget IO for instance). It is possible to change the related Initial IO of a Budget IO in order to link this Budget IO to the corresponding CA."
-                }
-            },
+            # {
+                # "type": "section",
+                # "text": {
+                    # "type": "mrkdwn",
+                    # "text": ":warning: You will notice that a CA is linked to one and only one Initial IO. However, many types of IO can be related to a CA (such as Budget IO for instance). It is possible to change the related Initial IO of a Budget IO in order to link this Budget IO to the corresponding CA."
+                # }
+            # },
             {
                 "type": "section",
                 "text": {
@@ -2107,6 +2322,78 @@ def action_button_ca2(ack, say):
                 }
             }
             ]
+    say(blocks=blocks)
+    
+@app.action("button-ca3")
+def action_button_ca3(ack, say):
+    ack()
+    blocks = [
+            {
+                "type": "divider"
+            },
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": "The CPOP is an identification number for the advertiser. There are two categories: *Audience extension IO* and *Contractual Account RSX*."
+                }
+            },
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": ":arrow_right: For the Audience extension, the sales has to go to the Account page (where the Entity Type is \"Advertiser\"), and then populate the Web URL field. The sales needs to go to the IOD page to create a New Integration, clicking on the button located to the top right of the page."
+                }
+            },
+            {
+               "type": "image",
+                "title": {
+                    "type": "plain_text",
+                    "text": "Web URL at the Account level",
+                    "emoji": True
+                },
+                "image_url": "https://i.postimg.cc/jdQMpC5V/company-weburl-CPOP.png",
+                "alt_text": "image1"
+            },
+            {
+               "type": "image",
+                "title": {
+                    "type": "plain_text",
+                    "text": "New Integration button at the IOD level",
+                    "emoji": True
+                },
+                "image_url": "https://i.postimg.cc/jdQMpC5V/company-weburl-CPOP.png",
+                "alt_text": "image1"
+            },
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": ":arrow_right: For the CA RSX, the Website URL fields have to be populated. Then click on the RSX Integration button to the top right of the CA page to generate an Integration Status."
+                }
+            },
+            {
+               "type": "image",
+                "title": {
+                    "type": "plain_text",
+                    "text": "Website URL",
+                    "emoji": True
+                },
+                "image_url": "https://i.postimg.cc/L4QBdfkZ/weburl-CPOP.png",
+                "alt_text": "image1"
+            },
+            {
+               "type": "image",
+                "title": {
+                    "type": "plain_text",
+                    "text": "RSX Integration button",
+                    "emoji": True
+                },
+                "image_url": "https://i.postimg.cc/CM2Dr0YG/RSX-integration-CPOP.png",
+                "alt_text": "image1"
+            }
+            ]
+            
     say(blocks=blocks)
     
 ########################## Agency change questions ##############################
