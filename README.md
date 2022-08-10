@@ -1,7 +1,7 @@
-# slackbot
-Answer questions of the Salesforce Chatter - Retail Media House
-Work in progress
+This app functionning is based on a "click-answer" method.
 
-This repo if for everyone having an access and want to contribute to the Chatter Bot
+It is made in order to address many topics about the Sales requests in the Salesforce chatter. It gathers information and shows the process 
+to follow when modifying an IO, an account, an Opportunity, etc.
 
-For the images, the web host Postimage is used (public, so do not share private data).
+To see how to maintain the bot, go to the Confluence page: https://criteo.atlassian.net/wiki/spaces/RMLTC/pages/1811679505/The+Chatter+Bot+inside+out+WiP
+It indicates how the Chatter Bot works as well.

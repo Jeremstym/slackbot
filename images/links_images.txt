@@ -1,5 +1,5 @@
 amr_credit_seg.png  ->  https://i.postimg.cc/qvtLmzvn/amr-credit-seg.png
-approved_inspector.png  ->  https://i.postimg.cc/xTt8QbwJ/approved-inspector.png
+approved_inspector.png  ->  https://i.postimg.cc/vHts2VYP/approved-inspector.png
 chatterbot_ca_id.PNG  ->  https://i.postimg.cc/3N1p5n2D/chatterbot-ca-id.png
 id_format.PNG  ->  https://i.postimg.cc/J0r9FBhR/id-format.png
 pending_validation_error.png  ->  https://i.postimg.cc/zvKbmz10/pending-validation-error.png
