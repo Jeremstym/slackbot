@@ -1,0 +1,13 @@
+# Include files needed by 'setup.py'.
+include requirements.txt tests-requirements.txt
+
+# Include the whole source directories.
+graft chatter_bot
+graft tests
+
+# Include other files that should be in the source distribution.
+include MANIFEST.in
+include README.rst README.md  # There should probably only be one of these
+
+# Finally exclude built files.
+global-exclude *.py[cod] __pycache__ *.so *.dylib

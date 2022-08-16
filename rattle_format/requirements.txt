@@ -1,0 +1,12 @@
+gourde[twisted]
+flask
+# If you want to build APIs, un-comment this.
+# flask_restplus
+pandas
+# sqlalchemy
+rattle-configuration==0.6.1
+slack_bolt
+# vertica-client>=1.1
+# flask-auth-criteo==0.2
+pyflakes==2.4.0
+

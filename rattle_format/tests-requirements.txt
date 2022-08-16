@@ -1,0 +1,8 @@
+pytest
+coverage
+pytest-benchmark
+pylama
+tox
+httmock
+mock
+pyflakes==2.4.0
